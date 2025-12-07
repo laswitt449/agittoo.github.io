@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>Cyberpunk Profile — Agung Laswito</title>
+
+<style>
+:root{
+  --bg1:#0a0630;
+  --bg2:#01010b;
+  --neon-cyan:#00f6ff;
+  --neon-pink:#ff009d;
+  --neon-purple:#b400ff;
+  --glass: rgba(255,255,255,0.05);
+  --radius:14px;
+  --maxw:98vw;
+  --gap:16px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:
+    radial-gradient(circle at 20% 20%, var(--neon-purple) 0%, transparent 35%),
+    radial-gradient(circle at 90% 10%, var(--neon-pink) 0%, transparent 35%),
+    radial-gradient(circle at 10% 90%, var(--neon-cyan) 0%, transparent 35%),
+    linear-gradient(140deg, var(--bg1), var(--bg2));
+  color:#eaffff;
+  display:flex;
+  justify-content:center;
+  padding:28px;
+}
+
+/* WRAP */
+.wrap{
+  width:98vw;
+  max-width:none;
+  margin:0 auto;
+}
+
+/* HEADER */
+.header-frame{
+  background:linear-gradient(90deg,
+    rgba(0,246,255,0.07),
+    rgba(255,0,157,0.05),
+    rgba(180,0,255,0.05)
+  );
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 0 24px rgba(255,0,157,0.4),
+             0 0 32px rgba(0,246,255,0.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.header-frame h1{
+  margin:0;
+  font-size:22px;
+  letter-spacing:0.6px;
+}
+.header-frame strong{
+  font-weight:900;
+  color:var(--neon-cyan);
+  text-shadow:0 0 12px var(--neon-purple);
+}
+
+/* PROFILE CARD */
+.card{
+  background:linear-gradient(180deg,
+    rgba(255,255,255,0.06),
+    rgba(0,0,0,0.25)
+  );
+  border-radius:18px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 18px rgba(0,246,255,0.28),
+    0 0 28px rgba(255,0,157,0.25);
+}
+.profile-img{
+  width:100%;height:320px;object-fit:cover;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:0 0 24px rgba(0,246,255,0.25);
+  display:block
+}
+.profile-desc{
+  margin-top:12px;
+  line-height:1.6;
+  color:rgba(223,249,255,0.95);
+  font-size:15px
+}
+
+/* BUTTON */
+.controls{display:flex;justify-content:center;margin:18px 0}
+.btn{
+  padding:12px 18px;
+  border-radius:12px;
+  border:none;
+  font-weight:800;
+  cursor:pointer;
+  background:linear-gradient(90deg,
+    var(--neon-pink),
+    var(--neon-cyan),
+    var(--neon-purple)
+  );
+  background-size:300% 300%;
+  color:#041022;
+  box-shadow:0 0 18px rgba(255,0,157,0.45);
+  animation:glowBtn 6s linear infinite;
+}
+@keyframes glowBtn{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ABOUT PAGE */
+#skillPage{
+  display:none;
+  margin-top:18px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .45s cubic-bezier(.22,1,.36,1);
+  flex-direction:column;
+}
+#skillPage.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* SKILL BOX */
+.skill{
+  background:linear-gradient(180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.01)
+  );
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.15);
+  margin-bottom:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  opacity:0;
+  transform:translateY(12px);
+  transition:all .5s ease;
+  box-shadow:
+    0 0 14px rgba(0,246,255,0.18),
+    0 0 22px rgba(255,0,157,0.18);
+}
+.skill.reveal{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* SKILL CONTENT */
+.skill .left{flex:0 0 140px}
+.skill img{
+  width:140px;
+  height:90px;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow:0 0 12px rgba(180,0,255,0.35);
+}
+.skill .meta{flex:1;min-width:180px}
+.skill h3{margin:0 0 6px 0;font-size:16px;text-shadow:0 0 6px var(--neon-purple)}
+
+/* LONG DESCRIPTION - FIX: hidden by default */
+.long-desc{
+  display:none;
+  margin-top:10px;
+  color:rgba(223,249,255,0.95);
+  line-height:1.55;
+  transition:all .28s ease;
+}
+
+/* READ MORE */
+.readMore{
+  margin-top:10px;
+  padding:8px 12px;
+  border-radius:10px;
+  border:none;
+  background:transparent;
+  color:var(--neon-cyan);
+  font-weight:800;
+  cursor:pointer;
+  text-shadow:0 0 8px var(--neon-pink);
+}
+
+/* SOCIAL */
+.mySocial{
+  display:none;
+  margin-top:auto;
+  padding:14px;
+  border-radius:12px;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0.07),
+    rgba(255,255,255,0.01)
+  );
+  border:1px solid rgba(255,255,255,0.14);
+  text-align:center;
+  width:100%;
+  box-shadow:0 0 18px rgba(0,246,255,0.25);
+}
+.mySocial a{
+  display:inline-block;
+  margin:6px;
+  padding:10px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--neon-cyan);
+  border:1px solid rgba(0,234,255,0.3);
+  font-weight:700;
+  transition:.3s;
+  min-width:100px;
+  box-shadow:0 0 12px rgba(255,0,157,0.4)
+}
+.mySocial a:hover{
+  box-shadow:0 0 18px var(--neon-cyan),
+             0 0 22px var(--neon-pink),
+             0 0 26px var(--neon-purple);
+  transform:scale(1.08);
+}
+
+/* RESPONSIVE */
+@media (max-width:720px){
+  .profile-img{height:220px}
+  .skill{flex-direction:column;align-items:flex-start}
+  .skill .left{flex:none;width:100%}
+  .skill img{width:100%;height:160px}
+  .skill .meta{width:100%}
+  .mySocial a{display:block;width:100%;margin:8px 0}
+}
+@media (max-width:480px){
+  .skill img{height:140px}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="header-frame">
+    <h1>Hello — I'm <strong>Agung Laswito</strong></h1>
+  </div>
+
+  <div class="card">
+    <img class="profile-img" src="https://scontent.fpku2-1.fna.fbcdn.net/v/t39.30808-6/597156292_828147646515427_517129328685372207_n.jpg?stp=dst-jpg_p180x540_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE1Cqvmm_zr0YGNvLlV_DlslPig6piarXSU-KDqmJqtdJEjxTvaZBd8_fkkEST5ZAD5gx0JsOzqN03Z2TPJCmLJ&_nc_ohc=EqmPewSP5ZgQ7kNvwEqfIXJ&_nc_oc=Adlj-GzZ17vCbsddj-uwC1b1g22-MIA-8RKFqflfxv1IJjHlyh4MTSaNz90GfIVQm0c&_nc_zt=23&_nc_ht=scontent.fpku2-1.fna&_nc_gid=qp3LoCB5K69NZevKpOkt3A&oh=00_Afkg9wvDDfp58tfx2VWFDjY7pZdWwHGszKrUDmp_pQ2__w&oe=693BBC45" alt="profile image" />
+    <div class="profile-desc">
+      I’m a Roblox game developer with a strong passion for creating immersive and interactive experiences.
+      I specialize in scripting, GUI design, map building, and map detailing—turning ideas into fully playable worlds.
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="aboutBtn" aria-expanded="false">About Me</button>
+    </div>
+
+    <div id="skillPage" aria-hidden="true">
+      <h2 style="text-align:center;margin-bottom:14px;color:var(--neon-cyan);">My Skill</h2>
+
+      <div class="skill">
+        <div class="left"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop" alt="Scripter image"></div>
+        <div class="meta">
+          <h3><strong>Scripter</strong></h3>
+          <div style="font-size:13px;opacity:0.85">Build systems, tools, and gameplay mechanics.</div>
+          <button class="readMore" data-target="s1">Show More</button>
+          <div id="s1" class="long-desc">As a scripter I architect responsive systems that scale well—optimizing remote events, modular modules, and writing clear, documented code suitable for teams and solo production. I prioritize performance and readability so gameplay feels smooth and reliable.</div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="left"><img src="https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/0/d/3/7/0d37a2cd5fb28681ea6395a38ef9e63df7e2056f.png" alt="GUI image"></div>
+        <div class="meta">
+          <h3><strong>GUI Designer</strong></h3>
+          <div style="font-size:13px;opacity:0.85">Interfaces that are clear and delightful.</div>
+          <button class="readMore" data-target="s2">Show More</button>
+          <div id="s2" class="long-desc">I prototype UI with accessibility, clarity, and game feel in mind—using grid systems, consistent spacing, and animation to guide the player. I craft elements that communicate game state quickly and look great on many screen sizes.</div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="left"><img src="https://assets.create.roblox.com/3fa0174e8dd54be4a84b837ec56f86e8f789ef25/assets/landing/studio.webp" alt="Map Builder image"></div>
+        <div class="meta">
+          <h3><strong>Map Builder</strong></h3>
+          <div style="font-size:13px;opacity:0.85">Create immersive playable spaces.</div>
+          <button class="readMore" data-target="s3">Show More</button>
+          <div id="s3" class="long-desc">I focus on layout readability, player flow, and atmosphere—balancing landmarks, cover, and pacing to keep players engaged. I iterate on playtests to ensure maps are fun and clear.</div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="left"><img src="https://i.ytimg.com/vi/p6az5gB7YUY/maxresdefault.jpg" alt="Detailing image"></div>
+        <div class="meta">
+          <h3><strong>Map Detailing</strong></h3>
+          <div style="font-size:13px;opacity:0.85">Polish that elevates immersion.</div>
+          <button class="readMore" data-target="s4">Show More</button>
+          <div id="s4" class="long-desc">Detailing includes lighting touches, ambient props, decals, and subtle storytelling items that make a map feel lived-in and believable. I use details to direct players and reinforce theme.</div>
+        </div>
+      </div>
+
+      <div class="mySocial" id="newSocial">
+        <a href="https://discord.gg/Q8Qya3nmC3" target="_blank">Discord</a>
+        <a href="https://instagram.com/lasw1t" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@agitto0" target="_blank">TikTok</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const aboutBtn = document.getElementById("aboutBtn");
+const skillPage = document.getElementById("skillPage");
+const newSocial = document.getElementById("newSocial");
+
+// Ensure all long-desc are hidden on load (defensive)
+document.querySelectorAll('.long-desc').forEach(el => {
+  el.style.display = 'none';
+});
+
+function openAbout(){
+  skillPage.style.display="flex";
+  newSocial.style.display="block";
+  requestAnimationFrame(()=> skillPage.classList.add("show"));
+}
+
+function closeAbout(){
+  skillPage.classList.remove("show");
+  setTimeout(()=>{
+    skillPage.style.display="none";
+    newSocial.style.display="none";
+  },300);
+}
+
+aboutBtn.addEventListener("click",()=>{
+  const isOpen = window.getComputedStyle(skillPage).display !== "none";
+  if(!isOpen){
+    aboutBtn.textContent="Close";
+    aboutBtn.setAttribute('aria-expanded','true');
+    openAbout();
+  } else {
+    aboutBtn.textContent="About Me";
+    aboutBtn.setAttribute('aria-expanded','false');
+    closeAbout();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+});
+
+document.querySelectorAll('.readMore').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const id = e.currentTarget.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if(!el) return;
+    // toggle with explicit checks
+    if (el.style.display === 'none' || el.style.display === '') {
+      el.style.display = 'block';
+      e.currentTarget.textContent = 'Close';
+      // optionally scroll into view on small screens
+      if(window.innerWidth < 720){
+        el.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    } else {
+      el.style.display = 'none';
+      e.currentTarget.textContent = 'Show More';
+    }
+  });
+});
+
+const skillItems = document.querySelectorAll(".skill");
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("reveal");
+    }
+  })
+},{threshold:.2});
+skillItems.forEach(el=>observer.observe(el));
+
+    
+    
+    
+    
+</script>
+
+</body>
+</html>
